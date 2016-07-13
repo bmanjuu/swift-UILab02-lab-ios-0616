@@ -24,6 +24,7 @@ class ViewController: UIViewController {
         // TODO: Mix colors and return a string indicating the name of the mixed color
         // (e.g., "red", "purple", "blue")
         var mixedColor = ""
+        // print("first argument: \(first) second argument: \(second)")
         
         switch (first, second) {
             case ("red", "red"):
@@ -45,10 +46,12 @@ class ViewController: UIViewController {
             case ("yellow", "yellow"):
                 mixedColor = "yellow"
             default:
-                break
+                // print("inside switch -- first: \(first), second: \(second)")
+                mixedColor = "blue"
         }
         
         paintBucket.paintColorName = mixedColor
+        // print("mixed color: \(mixedColor)")
         
         return paintBucket.paintColorName
     }
@@ -56,30 +59,12 @@ class ViewController: UIViewController {
     @IBAction func colorSelected(sender: UISegmentedControl) {
         // TODO: Mix each selected color and set the paint color to the mixed color
         
-        let color1 = firstColor.color.name
-        let color2 = secondColor.color.name
+        let color1 = firstColor.color.name.lowercaseString
+        let color2 = secondColor.color.name.lowercaseString
+        //need to make this lowercase string to match the switch statement cases in mixColors() method. otherwise, paint color names are "Red", "Blue" or "Yellow", because these correspond with the labels of the segmented controls! 
         
-//        switch firstColor.selectedSegmentIndex {
-//            case 0:
-//                color1 = "red"
-//            case 1:
-//                color1 = "yellow"
-//            case 2:
-//                color1 = "blue"
-//            default:
-//                break
-//        }
-//        
-//        switch secondColor.selectedSegmentIndex {
-//            case 0:
-//                color2 = "red"
-//            case 1:
-//                color2 = "yellow"
-//            case 2:
-//                color2 = "blue"
-//            default:
-//                break
-//        }
+//        print("first color: \(color1)")
+//        print("second color: \(color2)")
         
         mixColors(withFirst: color1, second: color2)
     }
